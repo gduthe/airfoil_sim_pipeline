@@ -1,0 +1,53 @@
+# run settings
+run_settings:
+  debug: False
+
+# settings for the inflow
+inflow_settings:
+  min_vel: 1                              # Min inflow velocity
+  max_vel: 100                            # Max inflow velocity
+  min_turb_i: 0.0                         # Min inflow turbulent intensity [%]
+  max_turb_i: 20.0                        # Max inflow turbulent intensity [%]
+  min_turb_l: 0.01                        # Min inflow turbulent length scale [m]
+  max_turb_l: 0.5                         # Max inflow turbulent length scale [m]
+  COV_Re: 0.02                            # COV of the Reynolds number. Variations due to atmospheric pressure, temperature and humidity
+  COV_Ma: 0.02                            # COV of the Mach number. Variations due to atmospheric pressure, temperature and humidity
+  mean_Rho: 1.225                         # mean air density
+  COV_Rho: 0.01                           # COV of air density. Variations due to atmospheric pressure, temperature and humidity
+  mean_Dyn_Viscosity: 1.81397e-5          # Fluid viscosity (dynamic) k/m-s
+  COV_Dyn_Viscosity: 0.01                 # Coefficient of variation (COV) of Fluid viscosity (dynamic) k/m-s
+  mean_air_temp: 15                       # Mean value of air temperature
+  COV_air_temp: 0.30                      # Coefficient of variation (COV) of air temperature
+
+# settings for the airfoil section of interest
+airfoil_settings:
+  generation_type: 'catalog'              # Either 'catalog' to draw airfoils from database or 'random' for airfoils sampled using VAE
+  gen_path: 'airfoil_generation/clean_airfoil_database_v3.tar'  # Path to airfoil catalog or VAE model for generation
+  min_ang_attack: -25                     # min angle of attack
+  max_ang_attack: 25                      # max angle of attack
+  le_erosion: False                       # if the leading edge should be eroded
+  mean_rough_patch_length: 0.0            # length of roughness patch from leading edge as percent of chord length
+  STD_rough_patch_length: 4.0             # STD of roughness patch from leading edge as percent of chord length
+  mean_rough_H: 0.0                       # mean equivalent sand grain roughness height in um
+  STD_rough_H: 100                        # standard deviation of the equivalent sand grain roughness height in um
+  chord_length: 1                         # Chord length
+
+mesh_settings:
+  mesh_type: 'unstruct'                 # Either 'unstruct', 'hyperbolic', 'elliptical' or 'snappy' type meshes
+
+# settings that handle the cfd
+cfd_settings:
+  number_of_cores: 1                      # number of cores for each simulation
+  solution:                               # solution settings
+    state: "steady"
+    solver: "simpleFoam"
+  turbulence_model: "kOmegaSSTLM"          # type of RANS model
+  wall_function: "nutWallFunction"         # wall function type
+  max_iterations: 16000                    # maximum number of iterations
+  time_step: 1                             # time stepping settings
+  write_interval: 4000                     # interval for solution saving
+  methods_control: True                    # if the solver methods should be controlled (settings below)
+  convergence_criteria: [1e-6, 1e-6, 1e-3] # residue convergence criteria for U and p
+  relaxation_factors: [0.3, 0.7, 0.7]      # relaxation factors for p, U and others
+  open_foam_fields: True                   # if the openfoam fields should be stored
+  yPlus: True                              # if y plus should be computed and stored

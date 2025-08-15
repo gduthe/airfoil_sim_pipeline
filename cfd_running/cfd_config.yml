@@ -1,0 +1,43 @@
+# settings that handle the io
+io_settings:
+  mesh_path: '/home/gregory/Documents/PhD/airfoil_cfd_pipeline/airfoil_meshing/naca_0018.msh'
+  init_from: 'uniform'
+  run_path: '/home/gregory/Documents/PhD/airfoil_cfd/benchmarking/naca_0018/re_827k_aoa_15'
+  output_path: ''
+
+# settings that handle the cfd
+cfd_settings:
+  number_of_cores: 1
+  solution:
+    state: "steady"
+    solver: "simpleFoam"
+  turbulence_model: "kOmegaSST"
+  wall_function: "nutLowReWallFunction"
+  max_iterations: 2000
+  time_step: 1
+  write_interval: 10000
+  methods_control: True
+  convergence_criteria: [1e-6, 1e-7, 1e-3]
+  relaxation_factors: [0.4, 0.7, 0.7]
+  open_foam_fields: True
+  yPlus: True
+
+# settings for inflow
+bc_settings:
+  inflow_speed:
+  reynolds_num: 827212
+  angle_of_attack: 15
+  kinematic_viscosity: 1.511e-5
+  characteristic_length: 1
+  turbulence_intensity: 0.05
+  turbulence_length_scale: 0.1
+  le_erosion: False
+  rough_patches: # only used when le_erosion True
+    AIRFOIL_Rough_Top:
+      roughness_extension: [ -1, 0, -1, 0.045, 1, 2 ]
+      roughness_height: 0.002
+      roughness_constant: 0.2
+    AIRFOIL_Rough_Bot:
+      roughness_extension: [ -1, -1, -1, 0.125, 0, 2 ]
+      roughness_height: 0.005
+      roughness_constant: 0.2

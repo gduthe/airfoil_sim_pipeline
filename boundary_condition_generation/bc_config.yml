@@ -1,0 +1,41 @@
+# settings for the inflow
+inflow_settings: 
+  mean_V: 10                          # Mean wind speed
+  k_V: 2.0                            # Shape factor of a Weibull distribution of the wind speed
+  Iref: 0.16                          # Iref parameter
+  Vmin: 3                             # Minimum simulated wind speed <Vin
+  Vmax: 25                            # Maximum simulated wind speed >Vout
+  mean_turb_Lscale: 0.2               # Mean value of turbulence length scale as percent of chord length, at the inlet grid
+  COV_turb_Lscale: 0.01               # Coefficient of variation (COV) of turbulence length scale
+  COV_Re: 0.02                        # COV of the Reynolds number. Variations due to atmospheric pressure, temperature and humidity
+  COV_Ma: 0.02                        # COV of the Mach number. Variations due to atmospheric pressure, temperature and humidity
+  mean_Rho: 1.225                     # mean air density
+  COV_Rho: 0.01                       # COV of air density. Variations due to atmospheric pressure, temperature and humidity
+  min_ang_attack: -45                 # min angle of attack
+  max_ang_attack: 45                  # max angle of attack
+  mean_Dyn_Viscosity: 1.81397e-5      # Fluid viscosity (dynamic) k/m-s
+  COV_Dyn_Viscosity: 0.01             # Coefficient of variation (COV) of Fluid viscosity (dynamic) k/m-s
+  mean_air_temp: 15                   # Mean value of air temperature
+  COV_air_temp: 0.30                  # Coefficient of variation (COV) of air temperature
+
+# settings for the turbine
+turbine_settings:
+  rotor_diameter: 175                 # Rotor diameter in [m]
+  min_rot_rpm: 4                      # minimum rotor RPM when the turbine produces power
+  max_rot_rpm: 13                     # maximum rotor RPM when the turbine produces power
+  rated_u: 12                         # Rated wind speed
+  cutin_u: 3                          # min wind speed at which turbine starts producing power
+  cutout_u: 25                        # max wind speed at which turbine is still producing power before shutting down due to high wind speeds
+  height_above_ground: 100            # Hub height
+
+# settings for the airfoil section of interest
+airfoil_settings:
+  mean_ang_attack: 8                  # Mean angle of attack corresponding to optimal Cp (max CL/CD)
+  COV_ang_attack: 0.05                # COV of angle of attack: variations due to turbulence, azimuth and location along the blade span
+  mean_rough_patch_length: 0.0        # length of roughness patch from leading edge as percent of chord length
+  STD_rough_patch_length: 4.0         # STD of roughness patch from leading edge as percent of chord length
+  equ_sand_grain_rough_H: 0.0         # mean equivalent sand grain roughness height in mm
+  STD_sand_grain_rough_H: 1.5         # standard deviation of the equivalent sand grain roughness height in mm
+  blade_span_location: 0.75           # location of analysis section along the span of the blade
+  chord_length: 1                     # Chord length
+

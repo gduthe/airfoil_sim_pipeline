@@ -1,0 +1,57 @@
+# mesh and airfoil settings
+airfoil_settings:
+  airfoil_dat_file: '/home/gregory/Documents/PhD/airfoil_cfd/geometries/naca_633418_new_cut_TE.dat'         # path to input dat file
+
+mesh_settings:
+  h_a: 5e-3
+  h_0: 0.15
+  R_b: 100
+  h_extrude: 1.0
+  refine_wake_len: 0.04
+  h_w: 5e-2
+  use_base_coords: True
+
+io_settings:
+  mesh_path: ''
+  init_from: 'uniform'
+  run_path: ''
+  output_path: ''
+
+# settings for the boundary conditions
+bc_settings:
+  inflow_speed:
+  reynolds_num: 2.4e+6
+  angle_of_attack: 10
+  kinematic_viscosity: 1.511e-5
+  characteristic_length: 1
+  turbulence_intensity: 0.05
+  turbulence_length_scale: 0.1
+  le_erosion: True
+  rough_patches: # only used when le_erosion True
+    AIRFOIL_Rough_Top:
+      roughness_extension: [ -1, 0, -1, 0.045, 1, 2 ]
+      roughness_height: 100 # [um]
+      roughness_density: 3  # [%]
+      roughness_constant: 0.8
+    AIRFOIL_Rough_Bot:
+      roughness_extension: [ -1, -1, -1, 0.125, 0, 2 ]
+      roughness_height: 100 # [um]
+      roughness_density: 3  # [%]
+      roughness_constant: 1.0
+
+# settings that handle the cfd
+cfd_settings:
+  number_of_cores: 1                      # number of cores for each simulation
+  solution:                               # solution settings
+    state: "steady"
+    solver: "simpleFoam"
+  turbulence_model: "kOmegaSSTLM"          # type of RANS model
+  wall_function: "nutWallFunction"         # wall function type
+  max_iterations: 16000                    # maximum number of iterations
+  time_step: 1                             # time stepping settings
+  write_interval: 4000                     # interval for solution saving
+  methods_control: True                    # if the solver methods should be controlled (settings below)
+  convergence_criteria: [1e-6, 1e-7, 1e-3] # residue convergence criteria for U and p
+  relaxation_factors: [0.3, 0.7, 0.7]      # relaxation factors for p, U and others
+  open_foam_fields: True                   # if the openfoam fields should be stored
+  yPlus: True                              # if y plus should be computed and stored

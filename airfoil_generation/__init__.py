@@ -1,0 +1,1 @@
+from .sample_catalog_airfoils import sample_catalog_airfoils, sample_specific_airfoils

@@ -1,0 +1,38 @@
+/*---------------------------------------------------------------------------*\
+         _      _                 |
+        | |    | |                | OLDEV: CFD tools developed by
+   ___  | |  __| |  ___ __   __   |        Fraunhofer IWES and ForWind 
+  / _ \ | | / _` | / _ \\ \ / /   |        in Oldenburg, Germany
+ | (_) || || (_| ||  __/ \ V /    |
+  \___/ |_| \__,_| \___|  \_/     | http://www.iwes.fraunhofer.de
+                                  | http://www.forwind.de
+-------------------------------------------------------------------------------
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     |
+    \\  /    A nd           | Copyright  held by original author
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      calculateCpCfDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+	// name of patch of interest
+	bodyPatch	AIRFOIL;
+
+	// name of pressure field: p or pMean
+	definedPressureField	p;
+
+	// exact position of on span (for 2D meshes only)
+	span		0.0;
+	spanAxis	(0 0 1);
+
+
+// ************************************************************************* //
